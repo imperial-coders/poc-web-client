@@ -1,5 +1,5 @@
 import DataLoader from "dataloader";
-import { Transaction } from "./types";
+import { SearchTransactionParams, Transaction } from "./types";
 import * as connectionUtils from "../../graphql/utils/limit-offset";
 
 const { DATE_TIME_FORMAT = "" } = process.env;
@@ -74,7 +74,7 @@ export class TransactionService {
   //     }
   //   }
 
-  async searchGames({
+  async searchTransactions({
     limit = 20,
     offset = 0,
     fromDate,
@@ -82,63 +82,38 @@ export class TransactionService {
   }: {
     limit?: number;
     offset?: number;
-    playerGroupId?: string;
+    userId?: string;
     fromDate?: Date;
   }) {
-    const where = {
-      playerGroupId: args.playerGroupId,
-      ...(!!fromDate
-        ? {
-            utcDateTime: {
-              gte: new Date(fromDate.setHours(fromDate.getHours() - 2)),
-            },
-          }
-        : null),
-    };
-
-    // const [results, total] = await Promise.all([
-    //   prisma.game.findMany({
-    //     take: limit,
-    //     skip: offset,
-    //     where,
-    //     orderBy: {
-    //       utcDateTime: "asc",
-    //     },
-    //   }),
-    //   prisma.game.count({
-    //     where,
-    //   }),
-    // ]);
-
     return {
       results: [],
       total: 0,
     };
   }
 
-  //   async searchGamesConnections(args: SearchGameParams) {
-  //     const { first, after, last, before, playerGroupId, fromDate } = args;
+  async searchTransactionsConnections(args: SearchTransactionParams) {
+    const { first, after, last, before, userId, fromDate } = args;
 
-  //     const { limit, offset } = connectionUtils.parseArgs({
-  //       first,
-  //       after,
-  //       last,
-  //       before,
-  //     });
+    const { limit, offset } = connectionUtils.parseArgs({
+      first,
+      after,
+      last,
+      before,
+    });
 
-  //     const response = await this.searchGames({
-  //       playerGroupId,
-  //       fromDate,
-  //       limit,
-  //       offset,
-  //     });
+    const response = await this.searchTransactions({
+      userId,
+      fromDate,
+      limit,
+      offset,
+    });
 
-  //     return connectionUtils.createConnection<Game>({
-  //       total: response.total,
-  //       nodes: response.results,
-  //       offset,
-  //     });
-  //   }
+    return connectionUtils.createConnection<Transaction>({
+      total: response.total,
+      nodes: response.results,
+      offset,
+    });
+  }
 
   //   async updateGame({
   //     id,

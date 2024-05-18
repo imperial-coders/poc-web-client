@@ -1,4 +1,4 @@
-import { arg, idArg, queryField, stringArg } from "nexus";
+import { idArg, queryField } from "nexus";
 import { Transaction } from "../types/transaction";
 
 export const allTransactions = queryField((t) => {
@@ -15,25 +15,18 @@ export const allTransactions = queryField((t) => {
       ctx
     ) => {
       const results = await ctx
-        .playerGroupService()
-        .searchPlayersGroupsConnections({
-          ...args,
-          userId: userId ?? undefined,
-          keywords: keywords ?? undefined,
-          visibility: visibility ?? undefined,
-        });
+        .transactionService()
+        .searchTransactionsConnections({ ...args, userId });
 
       return results.edges.length;
     },
 
-    async nodes(_root, { userId, keywords, visibility, ...args }, ctx) {
+    async nodes(_root, { userId, ...args }, ctx) {
       const results = await ctx
-        .playerGroupService()
-        .searchPlayersGroupsConnections({
+        .transactionService()
+        .searchTransactionsConnections({
           ...args,
           userId: userId ?? undefined,
-          keywords: keywords ?? undefined,
-          visibility: visibility ?? undefined,
         });
 
       return results.edges.map((edge) => edge.node);

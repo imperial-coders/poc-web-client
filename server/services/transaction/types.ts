@@ -1,3 +1,5 @@
+import * as connectionUtils from "../../graphql/utils/limit-offset";
+
 export interface Transaction {
   id: string;
   userId: string;
@@ -8,3 +10,13 @@ export interface Transaction {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface SearchTransactionRequest {
+  userId?: string;
+  fromDate?: Date;
+  offset: number;
+  limit?: number;
+}
+
+export type SearchTransactionParams =
+  connectionUtils.CursorifyPaginationArgs<SearchTransactionRequest>;
