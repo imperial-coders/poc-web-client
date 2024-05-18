@@ -9,14 +9,11 @@ export const getTransaction = queryField("getTransaction", {
   },
 
   async resolve(_root, { id }, ctx) {
-    console.log("CCCC", JSON.stringify(ctx, null, 2));
     const service = ctx.transactionService();
-    console.log("XXXX", service);
-    const transaction = await service.transactionLoader().load(id);
-    if (!transaction) {
-      throw new Error("transaction not found");
+    try {
+      return await service.transactionLoader().load(id);
+    } catch (err) {
+      throw new Error(`transaction not found - ${id}`);
     }
-
-    return transaction;
   },
 });
