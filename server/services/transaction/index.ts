@@ -1,8 +1,9 @@
 import DataLoader from "dataloader";
 import { SearchTransactionParams, Transaction } from "./types";
 import * as connectionUtils from "../../graphql/utils/limit-offset";
+import { get } from "../../utils/fetch";
 
-const { DATE_TIME_FORMAT = "" } = process.env;
+const { TRANSACTIONS_URL } = process.env;
 
 export class TransactionService {
   private _transactionLoader?: DataLoader<string, Transaction | null>;
@@ -11,16 +12,10 @@ export class TransactionService {
     if (!this._transactionLoader) {
       this._transactionLoader = new DataLoader(
         async (ids: readonly string[]) => {
-          //   const matches = await prisma.game.findMany({
-          //     where: {
-          //       id: {
-          //         in: ids as string[],
-          //       },
-          //     },
-          //   });
-
-          //   return reorderLoadedData(ids, matches);
-          return [];
+          const url = new URL(`${TRANSACTIONS_URL}/transactions/${ids[0]}`);
+          // url.searchParams.append("ids", ids.join(","));
+          const matches = await get({ url: url.toString() });
+          return [matches];
         }
       );
     }
