@@ -12,10 +12,9 @@ export class TransactionService {
     if (!this._transactionLoader) {
       this._transactionLoader = new DataLoader(
         async (ids: readonly string[]) => {
-          const url = new URL(`${TRANSACTIONS_URL}/transactions/${ids[0]}`);
-          // url.searchParams.append("ids", ids.join(","));
-          const matches = await get({ url: url.toString() });
-          return [matches];
+          const url = new URL(`${TRANSACTIONS_URL}/transactions`);
+          url.searchParams.append("ids", ids.join(","));
+          return await get({ url: url.toString() });
         }
       );
     }
