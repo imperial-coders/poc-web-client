@@ -1,10 +1,6 @@
 import { objectType } from "nexus";
 import { fsPathJoin } from "../../lib/path";
 
-console.log(
-  "MORE",
-  fsPathJoin("server", "services", "transaction", "types.ts")
-);
 export const Transaction = objectType({
   name: "Transaction",
 
