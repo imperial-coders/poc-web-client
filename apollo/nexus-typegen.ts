@@ -105,8 +105,12 @@ export interface NexusGenFieldTypes {
   }
   Transaction: { // field return type
     amountInCents: number; // Int!
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     id: string; // ID!
+    merchant: string | null; // String
     summary: string | null; // String
+    transactionDate: NexusGenScalars['DateTime'] | null; // DateTime
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
   TransactionConnection: { // field return type
     edges: Array<NexusGenRootTypes['TransactionEdge'] | null> | null; // [TransactionEdge]
@@ -132,8 +136,12 @@ export interface NexusGenFieldTypeNames {
   }
   Transaction: { // field return type name
     amountInCents: 'Int'
+    createdAt: 'DateTime'
     id: 'ID'
+    merchant: 'String'
     summary: 'String'
+    transactionDate: 'DateTime'
+    updatedAt: 'DateTime'
   }
   TransactionConnection: { // field return type name
     edges: 'TransactionEdge'

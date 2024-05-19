@@ -57,8 +57,12 @@ type Query {
 
 type Transaction {
   amountInCents: Int!
+  createdAt: DateTime
   id: ID!
+  merchant: String
   summary: String
+  transactionDate: DateTime
+  updatedAt: DateTime
 }
 
 type TransactionConnection {
