@@ -63,6 +63,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   PageInfo: { // root type
     endCursor?: string | null; // String
     hasNextPage: boolean; // Boolean!
@@ -93,6 +94,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createTransaction: boolean | null; // Boolean
+  }
   PageInfo: { // field return type
     endCursor: string | null; // String
     hasNextPage: boolean; // Boolean!
@@ -124,6 +128,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    createTransaction: 'Boolean'
+  }
   PageInfo: { // field return type name
     endCursor: 'String'
     hasNextPage: 'Boolean'
@@ -155,6 +162,15 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createTransaction: { // args
+      amountInCents: number; // Int!
+      date?: string | null; // String
+      merchant?: string | null; // String
+      summary?: string | null; // String
+      userId: string; // ID!
+    }
+  }
   Query: {
     allTransactions: { // args
       after?: string | null; // String

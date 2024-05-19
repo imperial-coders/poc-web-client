@@ -20,3 +20,11 @@ export interface SearchTransactionRequest {
 
 export type SearchTransactionParams =
   connectionUtils.CursorifyPaginationArgs<SearchTransactionRequest>;
+
+export interface CreateTransactionRequest {
+  userId: string;
+  amountInCents: number;
+  summary?: string;
+  date: Date;
+  merchant?: string;
+}

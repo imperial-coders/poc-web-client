@@ -1,7 +1,11 @@
 import DataLoader from "dataloader";
-import { SearchTransactionParams, Transaction } from "./types";
+import {
+  CreateTransactionRequest,
+  SearchTransactionParams,
+  Transaction,
+} from "./types";
 import * as connectionUtils from "../../graphql/utils/limit-offset";
-import { get } from "../../utils/fetch";
+import { get, post } from "../../utils/fetch";
 
 const { TRANSACTIONS_URL } = process.env;
 
@@ -22,51 +26,25 @@ export class TransactionService {
     return this._transactionLoader;
   }
 
-  //   async createGame({
-  //     localDateTime,
-  //     utcDateTime,
-  //     maximumPlayers,
-  //     minimumPlayers,
-  //     location,
-  //     timezone,
-  //     playerGroupId,
-  //     userId,
-  //     sport,
-  //     offsetsInMinutes,
-  //     isRecurringGame,
-  //   }: CreateGameRequest) {
-  //     const playerGroup = await prisma.playerGroup.findFirst({
-  //       where: {
-  //         id: playerGroupId,
-  //         players: {
-  //           some: {
-  //             AND: {
-  //               userId,
-  //               isAdmin: true,
-  //               isOwner: true,
-  //             },
-  //           },
-  //         },
-  //       },
-  //     });
-
-  //     if (playerGroup) {
-  //       return this.create({
-  //         timezone,
-  //         localDateTime,
-  //         offsetsInMinutes,
-  //         utcDateTime,
-  //         address: location,
-  //         maximumPlayers,
-  //         minimumPlayers,
-  //         playerGroupId,
-  //         sport,
-  //         isRecurringGame,
-  //       });
-  //     } else {
-  //       throw new Error("Bad stuff");
-  //     }
-  //   }
+  async createTransaction({
+    userId,
+    amountInCents,
+    summary,
+    date,
+    merchant,
+  }: CreateTransactionRequest) {
+    const url = new URL(TRANSACTIONS_URL);
+    return await post({
+      url: url.toString(),
+      body: {
+        userId,
+        amountInCents,
+        summary,
+        date,
+        merchant,
+      },
+    });
+  }
 
   async searchTransactions({
     limit = 20,
