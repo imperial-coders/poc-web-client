@@ -72,16 +72,26 @@ export class TransactionService {
     limit = 20,
     offset = 0,
     fromDate,
-    ...args
+    userId,
   }: {
     limit?: number;
     offset?: number;
     userId?: string;
     fromDate?: Date;
   }) {
+    const url = new URL(`${TRANSACTIONS_URL}/transactions/search`);
+    const params = new URLSearchParams({
+      ...(userId && { userId }),
+      ...(fromDate && { fromDate: fromDate.toISOString() }),
+      ...(limit && { limit: limit.toString() }),
+      ...(offset && { offset: offset.toString() }),
+    });
+    url.search = params.toString();
+    const { results, total } = await get({ url: url.toString() });
+
     return {
-      results: [],
-      total: 0,
+      results,
+      total,
     };
   }
 
