@@ -1,5 +1,6 @@
 import { objectType } from "nexus";
 import { fsPathJoin } from "../../lib/path";
+import { User } from "./user";
 
 export const Transaction = objectType({
   name: "Transaction",
@@ -18,6 +19,12 @@ export const Transaction = objectType({
     t.dateTime("createdAt");
     t.dateTime("updatedAt");
 
-    //     userId: string;
+    t.field("user", {
+      type: User,
+      resolve: async (root, _args, ctx) => {
+        const service = ctx.userService();
+        return await service.userLoader().load(root.userId);
+      },
+    });
   },
 });

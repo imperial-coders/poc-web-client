@@ -1,11 +1,13 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { TransactionService } from "../services/transaction";
+import { UserService } from "../services/user";
 
 export class HttpContext {
   _req: IncomingMessage;
   _res: ServerResponse;
 
   _transactionService?: TransactionService;
+  _userService?: UserService;
 
   userId: string = "";
 
@@ -30,5 +32,13 @@ export class HttpContext {
     }
 
     return this._transactionService;
+  }
+
+  userService() {
+    if (!this._userService) {
+      this._userService = new UserService();
+    }
+
+    return this._userService;
   }
 }
