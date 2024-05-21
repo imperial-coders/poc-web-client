@@ -57,6 +57,7 @@ type Query {
     userId: ID
   ): TransactionConnection
   getTransaction(id: ID!): Transaction
+  getUser(id: ID!): User
 }
 
 type Transaction {
@@ -67,6 +68,7 @@ type Transaction {
   summary: String
   transactionDate: DateTime
   updatedAt: DateTime
+  user: User
 }
 
 type TransactionConnection {
@@ -88,4 +90,14 @@ type TransactionEdge {
 
   """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
   node: Transaction
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  firstName: String!
+  id: ID!
+  lastName: String!
+  phoneNumber: String
+  updatedAt: DateTime!
 }

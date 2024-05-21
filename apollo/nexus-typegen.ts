@@ -6,6 +6,7 @@
 
 import type { HttpContext } from "./../server/context/index"
 import type { Transaction } from "./../server/services/transaction/types"
+import type { User } from "./../server/protos/user"
 import type { core, connectionPluginCore } from "nexus"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
@@ -81,6 +82,7 @@ export interface NexusGenObjects {
     cursor: string; // String!
     node?: NexusGenRootTypes['Transaction'] | null; // Transaction
   }
+  User: User;
 }
 
 export interface NexusGenInterfaces {
@@ -106,6 +108,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     allTransactions: NexusGenRootTypes['TransactionConnection'] | null; // TransactionConnection
     getTransaction: NexusGenRootTypes['Transaction'] | null; // Transaction
+    getUser: NexusGenRootTypes['User'] | null; // User
   }
   Transaction: { // field return type
     amountInCents: number; // Int!
@@ -115,6 +118,7 @@ export interface NexusGenFieldTypes {
     summary: string | null; // String
     transactionDate: NexusGenScalars['DateTime'] | null; // DateTime
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+    user: NexusGenRootTypes['User'] | null; // User
   }
   TransactionConnection: { // field return type
     edges: Array<NexusGenRootTypes['TransactionEdge'] | null> | null; // [TransactionEdge]
@@ -124,6 +128,15 @@ export interface NexusGenFieldTypes {
   TransactionEdge: { // field return type
     cursor: string; // String!
     node: NexusGenRootTypes['Transaction'] | null; // Transaction
+  }
+  User: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    email: string; // String!
+    firstName: string; // String!
+    id: string; // ID!
+    lastName: string; // String!
+    phoneNumber: string | null; // String
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
 }
 
@@ -140,6 +153,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     allTransactions: 'TransactionConnection'
     getTransaction: 'Transaction'
+    getUser: 'User'
   }
   Transaction: { // field return type name
     amountInCents: 'Int'
@@ -149,6 +163,7 @@ export interface NexusGenFieldTypeNames {
     summary: 'String'
     transactionDate: 'DateTime'
     updatedAt: 'DateTime'
+    user: 'User'
   }
   TransactionConnection: { // field return type name
     edges: 'TransactionEdge'
@@ -158,6 +173,15 @@ export interface NexusGenFieldTypeNames {
   TransactionEdge: { // field return type name
     cursor: 'String'
     node: 'Transaction'
+  }
+  User: { // field return type name
+    createdAt: 'DateTime'
+    email: 'String'
+    firstName: 'String'
+    id: 'ID'
+    lastName: 'String'
+    phoneNumber: 'String'
+    updatedAt: 'DateTime'
   }
 }
 
@@ -180,6 +204,9 @@ export interface NexusGenArgTypes {
       userId?: string | null; // ID
     }
     getTransaction: { // args
+      id: string; // ID!
+    }
+    getUser: { // args
       id: string; // ID!
     }
   }

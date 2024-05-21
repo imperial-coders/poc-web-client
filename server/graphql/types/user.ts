@@ -5,7 +5,7 @@ export const User = objectType({
   name: "User",
 
   sourceType: {
-    module: fsPathJoin("server", "protos", "user"),
+    module: fsPathJoin("server", "protos", "user.ts"),
     export: "User",
   },
 
@@ -17,12 +17,12 @@ export const User = objectType({
     t.string("phoneNumber");
     t.nonNull.dateTime("createdAt", {
       resolve: (source) => {
-        return new Date(source);
+        return new Date(source.createdAt);
       },
     });
     t.nonNull.dateTime("updatedAt", {
       resolve: (source) => {
-        return new Date(source);
+        return new Date(source.updatedAt);
       },
     });
   },
