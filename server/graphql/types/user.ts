@@ -5,11 +5,25 @@ export const User = objectType({
   name: "User",
 
   sourceType: {
-    module: fsPathJoin("server", "services", "user", "types.ts"),
+    module: fsPathJoin("server", "protos", "user"),
     export: "User",
   },
 
   definition(t) {
     t.nonNull.id("id");
+    t.nonNull.string("firstName");
+    t.nonNull.string("lastName");
+    t.nonNull.string("email");
+    t.string("phoneNumber");
+    t.nonNull.dateTime("createdAt", {
+      resolve: (source) => {
+        return new Date(source);
+      },
+    });
+    t.nonNull.dateTime("updatedAt", {
+      resolve: (source) => {
+        return new Date(source);
+      },
+    });
   },
 });
