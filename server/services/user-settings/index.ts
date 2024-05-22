@@ -1,4 +1,3 @@
-import DataLoader from "dataloader";
 import * as grpc from "@grpc/grpc-js";
 import * as protos from "../../protos/user-settings";
 

@@ -7,6 +7,8 @@
 import type { HttpContext } from "./../server/context/index"
 import type { Transaction } from "./../server/services/transaction/types"
 import type { User } from "./../server/protos/user"
+import type { UserSettings } from "./../server/protos/user-settings"
+import type { StarWarsCharacter } from "./../server/services/star-wars-character/types"
 import type { core, connectionPluginCore } from "nexus"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
@@ -72,6 +74,7 @@ export interface NexusGenObjects {
     startCursor?: string | null; // String
   }
   Query: {};
+  StarWarsCharacter: StarWarsCharacter;
   Transaction: Transaction;
   TransactionConnection: { // root type
     edges?: Array<NexusGenRootTypes['TransactionEdge'] | null> | null; // [TransactionEdge]
@@ -83,6 +86,7 @@ export interface NexusGenObjects {
     node?: NexusGenRootTypes['Transaction'] | null; // Transaction
   }
   User: User;
+  UserSettigs: UserSettings;
 }
 
 export interface NexusGenInterfaces {
@@ -109,6 +113,10 @@ export interface NexusGenFieldTypes {
     allTransactions: NexusGenRootTypes['TransactionConnection'] | null; // TransactionConnection
     getTransaction: NexusGenRootTypes['Transaction'] | null; // Transaction
     getUser: NexusGenRootTypes['User'] | null; // User
+  }
+  StarWarsCharacter: { // field return type
+    id: string; // ID!
+    name: string; // String!
   }
   Transaction: { // field return type
     amountInCents: number; // Int!
@@ -137,6 +145,13 @@ export interface NexusGenFieldTypes {
     lastName: string; // String!
     phoneNumber: string | null; // String
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    userSettings: NexusGenRootTypes['UserSettigs']; // UserSettigs!
+  }
+  UserSettigs: { // field return type
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    favoriteStarWarsCharacter: NexusGenRootTypes['StarWarsCharacter'] | null; // StarWarsCharacter
+    id: string; // ID!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
 }
 
@@ -154,6 +169,10 @@ export interface NexusGenFieldTypeNames {
     allTransactions: 'TransactionConnection'
     getTransaction: 'Transaction'
     getUser: 'User'
+  }
+  StarWarsCharacter: { // field return type name
+    id: 'ID'
+    name: 'String'
   }
   Transaction: { // field return type name
     amountInCents: 'Int'
@@ -181,6 +200,13 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     lastName: 'String'
     phoneNumber: 'String'
+    updatedAt: 'DateTime'
+    userSettings: 'UserSettigs'
+  }
+  UserSettigs: { // field return type name
+    createdAt: 'DateTime'
+    favoriteStarWarsCharacter: 'StarWarsCharacter'
+    id: 'ID'
     updatedAt: 'DateTime'
   }
 }

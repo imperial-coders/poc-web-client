@@ -1,6 +1,8 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { TransactionService } from "../services/transaction";
 import { UserService } from "../services/user";
+import { UserSettingsService } from "../services/user-settings";
+import { StarWarsCharacterService } from "../services/star-wars-character";
 
 export class HttpContext {
   _req: IncomingMessage;
@@ -8,6 +10,8 @@ export class HttpContext {
 
   _transactionService?: TransactionService;
   _userService?: UserService;
+  _userSettingsService?: UserSettingsService;
+  _starWarsCharacterService?: StarWarsCharacterService;
 
   userId: string = "";
 
@@ -40,5 +44,21 @@ export class HttpContext {
     }
 
     return this._userService;
+  }
+
+  userSettingsService() {
+    if (!this._userSettingsService) {
+      this._userSettingsService = new UserSettingsService();
+    }
+
+    return this._userSettingsService;
+  }
+
+  starWarsCharacterService() {
+    if (!this._starWarsCharacterService) {
+      this._starWarsCharacterService = new StarWarsCharacterService();
+    }
+
+    return this._starWarsCharacterService;
   }
 }

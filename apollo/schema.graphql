@@ -60,6 +60,11 @@ type Query {
   getUser(id: ID!): User
 }
 
+type StarWarsCharacter {
+  id: ID!
+  name: String!
+}
+
 type Transaction {
   amountInCents: Int!
   createdAt: DateTime
@@ -99,5 +104,13 @@ type User {
   id: ID!
   lastName: String!
   phoneNumber: String
+  updatedAt: DateTime!
+  userSettings: UserSettigs!
+}
+
+type UserSettigs {
+  createdAt: DateTime!
+  favoriteStarWarsCharacter: StarWarsCharacter
+  id: ID!
   updatedAt: DateTime!
 }
