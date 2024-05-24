@@ -5,7 +5,7 @@ export const get = async ({ url }: { url: string }) => {
     });
     return await result.json();
   } catch (err) {
-    console.error(`${err}`);
+    console.error(`Fetch error - ${err}`);
   }
 };
 
