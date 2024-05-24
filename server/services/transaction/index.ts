@@ -61,8 +61,8 @@ export class TransactionService {
     const params = new URLSearchParams({
       ...(userId && { userId }),
       ...(fromDate && { fromDate: fromDate.toISOString() }),
-      ...(limit && { limit: limit.toString() }),
-      ...(offset && { offset: offset.toString() }),
+      ...(limit && { take: limit.toString() }),
+      ...(offset && { skip: offset.toString() }),
     });
     url.search = params.toString();
     const { results, total } = await get({ url: url.toString() });

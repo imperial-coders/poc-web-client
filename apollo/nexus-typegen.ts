@@ -144,6 +144,7 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     lastName: string; // String!
     phoneNumber: string | null; // String
+    transactions: NexusGenRootTypes['TransactionConnection'] | null; // TransactionConnection
     updatedAt: NexusGenScalars['DateTime']; // DateTime!
     userSettings: NexusGenRootTypes['UserSettigs']; // UserSettigs!
   }
@@ -200,6 +201,7 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     lastName: 'String'
     phoneNumber: 'String'
+    transactions: 'TransactionConnection'
     updatedAt: 'DateTime'
     userSettings: 'UserSettigs'
   }
@@ -234,6 +236,14 @@ export interface NexusGenArgTypes {
     }
     getUser: { // args
       id: string; // ID!
+    }
+  }
+  User: {
+    transactions: { // args
+      after?: string | null; // String
+      before?: string | null; // String
+      first?: number | null; // Int
+      last?: number | null; // Int
     }
   }
 }

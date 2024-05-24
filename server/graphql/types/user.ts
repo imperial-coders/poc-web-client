@@ -1,6 +1,7 @@
 import { objectType } from "nexus";
 import { fsPathJoin } from "../../lib/path";
 import { UserSettings } from "./user-settings";
+import { Transaction } from "./transaction";
 
 export const User = objectType({
   name: "User",
@@ -33,6 +34,34 @@ export const User = objectType({
     t.nonNull.dateTime("updatedAt", {
       resolve: (source) => {
         return new Date(source.updatedAt);
+      },
+    });
+
+    t.connectionField("transactions", {
+      type: Transaction,
+
+      totalCount: async (
+        { id },
+        // @ts-ignore => not sure why this doesn't recognize the additional args
+        { keywords, visibility, ...args },
+        ctx
+      ) => {
+        const results = await ctx
+          .transactionService()
+          .searchTransactionsConnections({ ...args, userId: id });
+
+        return results.pageInfo.total;
+      },
+
+      async nodes({ id }, { ...args }, ctx) {
+        const results = await ctx
+          .transactionService()
+          .searchTransactionsConnections({
+            ...args,
+            userId: id ?? undefined,
+          });
+
+        return results.edges.map((edge) => edge.node);
       },
     });
   },
