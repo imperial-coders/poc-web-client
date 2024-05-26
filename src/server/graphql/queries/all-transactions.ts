@@ -18,7 +18,7 @@ export const allTransactions = queryField((t) => {
         .transactionService()
         .searchTransactionsConnections({ ...args, userId });
 
-      return results.edges.length;
+      return results.pageInfo.total;
     },
 
     async nodes(_root, { userId, ...args }, ctx) {
