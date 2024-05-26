@@ -18,6 +18,7 @@ export const Transactions = () => {
         <Table>
           <TableHead>
             <TableRow>
+              <TableHeader />
               <TableHeader>Id</TableHeader>
               <TableHeader>Merchant</TableHeader>
               <TableHeader>Summary</TableHeader>
@@ -26,9 +27,10 @@ export const Transactions = () => {
           </TableHead>
           <tbody>
             {/* @ts-ignore */}
-            {transactions.map((t) => {
+            {transactions.map((t, index) => {
               return (
                 <TableRow key={t.id}>
+                  <TableCell>{index + 1}</TableCell>
                   <TableCell>{t.id}</TableCell>
                   <TableCell>{t.merchant}</TableCell>
                   <TableCell>{t.summary}</TableCell>
