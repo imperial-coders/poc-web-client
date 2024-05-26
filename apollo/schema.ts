@@ -16,7 +16,7 @@ export const schema = makeSchema({
   // or types: { Account, Node, Query }
   // or types: [Account, [Node], { Query }]
   contextType: {
-    module: join(process.cwd(), "/server/context/index.ts"),
+    module: join(process.cwd(), "/src/server/context/index.ts"),
     export: "HttpContext",
   },
   outputs: {
