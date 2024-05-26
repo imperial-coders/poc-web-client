@@ -38,7 +38,8 @@ export const useGetTransactions = ({
   });
 
   return {
-    transactions: data?.allTransactions?.edges ?? [],
+    // @ts-ignore
+    transactions: data?.allTransactions?.edges.map(({ node }) => node) ?? [],
     totalCount: data?.allTransactions?.totalCount,
     loading,
     error,
