@@ -29,13 +29,6 @@ export const useGetTransactions = ({
   limit: number;
   offset?: number;
 }) => {
-  console.log("STUFF", {
-    variables: {
-      userId,
-      first: limit,
-      after: offset,
-    },
-  });
   const { data, loading, error } = useQuery(GET_TRANSACTIONS, {
     variables: {
       userId,
