@@ -3,9 +3,9 @@
 import { Table, TableCell, TableHead, TableHeader, TableRow } from "../table";
 import { useGetTransactions } from "./data";
 
-export const Transactions = () => {
+export const Transactions = ({ userId }: { userId: string }) => {
   const { totalCount, transactions, loading } = useGetTransactions({
-    userId: "clwb7mw8300003z6kadi875xg",
+    userId,
     limit: 10,
   });
 
