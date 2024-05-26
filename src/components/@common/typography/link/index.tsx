@@ -9,7 +9,7 @@ export const NextLink = ({
   href: string;
 }) => {
   return (
-    <Link href={href} className="text-info no-underline">
+    <Link href={href} className="text-info no-underline cursor-pointer">
       {children}
     </Link>
   );
