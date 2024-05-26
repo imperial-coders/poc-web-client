@@ -25,11 +25,12 @@ export const useGetTransactions = ({
   limit,
   offset,
 }: {
-  userId: string;
+  userId?: string;
   limit: number;
   offset?: number;
 }) => {
   const { data, loading, error } = useQuery(GET_TRANSACTIONS, {
+    skip: !userId,
     variables: {
       userId,
       first: limit,

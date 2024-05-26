@@ -1,9 +1,16 @@
 "use client";
 
-import { Table, TableCell, TableHead, TableHeader, TableRow } from "../table";
+import {
+  Pagination,
+  Table,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../table";
 import { useGetTransactions } from "./data";
 
-export const Transactions = ({ userId }: { userId: string }) => {
+export const Transactions = ({ userId }: { userId?: string }) => {
   const { totalCount, transactions, loading } = useGetTransactions({
     userId,
     limit: 10,
@@ -13,7 +20,13 @@ export const Transactions = ({ userId }: { userId: string }) => {
     <div>loading</div>
   ) : (
     <div className="flex flex-col gap-1">
-      <div>{totalCount} - total rows</div>
+      <div className="flex items-center">
+        <div>{totalCount} - total rows</div>
+        <Pagination
+          onBack={() => console.log("back")}
+          onNext={() => console.log("next")}
+        />
+      </div>
       <Table>
         <TableHead>
           <TableRow>
