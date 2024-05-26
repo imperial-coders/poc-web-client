@@ -3,23 +3,28 @@
  * Do not make changes to this file directly
  */
 
-
-import type { HttpContext } from "./../server/context/index"
-import type { Transaction } from "./../server/services/transaction/types"
-import type { User } from "./../server/protos/user"
-import type { UserSettings } from "./../server/protos/user-settings"
-import type { StarWarsCharacter } from "./../server/services/star-wars-character/types"
-import type { core, connectionPluginCore } from "nexus"
+import type { HttpContext } from "../src/server/context/index";
+import type { Transaction } from "../src/server/services/transaction/types";
+import type { User } from "../src/server/protos/user";
+import type { UserSettings } from "../src/server/protos/user-settings";
+import type { StarWarsCharacter } from "../src/server/services/star-wars-character/types";
+import type { core, connectionPluginCore } from "nexus";
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
     /**
      * A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
-    date<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "Date";
+    date<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.CommonInputFieldConfig<TypeName, FieldName>
+    ): void; // "Date";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
-    dateTime<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "DateTime";
+    dateTime<FieldName extends string>(
+      fieldName: FieldName,
+      opts?: core.CommonInputFieldConfig<TypeName, FieldName>
+    ): void; // "DateTime";
   }
 }
 declare global {
@@ -27,11 +32,17 @@ declare global {
     /**
      * A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
-    date<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Date";
+    date<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "Date";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
-    dateTime<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DateTime";
+    dateTime<FieldName extends string>(
+      fieldName: FieldName,
+      ...opts: core.ScalarOutSpread<TypeName, FieldName>
+    ): void; // "DateTime";
     /**
      * Adds a Relay-style connection to the type, with numerous options for configuration
      *
@@ -39,220 +50,248 @@ declare global {
      */
     connectionField<FieldName extends string>(
       fieldName: FieldName,
-      config: connectionPluginCore.ConnectionFieldConfig<TypeName, FieldName> & { totalCount: connectionPluginCore.ConnectionFieldResolver<TypeName, FieldName, "totalCount"> }
-    ): void
+      config: connectionPluginCore.ConnectionFieldConfig<
+        TypeName,
+        FieldName
+      > & {
+        totalCount: connectionPluginCore.ConnectionFieldResolver<
+          TypeName,
+          FieldName,
+          "totalCount"
+        >;
+      }
+    ): void;
   }
 }
-
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }
 
-export interface NexusGenInputs {
-}
+export interface NexusGenInputs {}
 
-export interface NexusGenEnums {
-}
+export interface NexusGenEnums {}
 
 export interface NexusGenScalars {
-  String: string
-  Int: number
-  Float: number
-  Boolean: boolean
-  ID: string
-  Date: any
-  DateTime: any
+  String: string;
+  Int: number;
+  Float: number;
+  Boolean: boolean;
+  ID: string;
+  Date: any;
+  DateTime: any;
 }
 
 export interface NexusGenObjects {
   Mutation: {};
-  PageInfo: { // root type
+  PageInfo: {
+    // root type
     endCursor?: string | null; // String
     hasNextPage: boolean; // Boolean!
     hasPreviousPage: boolean; // Boolean!
     startCursor?: string | null; // String
-  }
+  };
   Query: {};
   StarWarsCharacter: StarWarsCharacter;
   Transaction: Transaction;
-  TransactionConnection: { // root type
-    edges?: Array<NexusGenRootTypes['TransactionEdge'] | null> | null; // [TransactionEdge]
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
+  TransactionConnection: {
+    // root type
+    edges?: Array<NexusGenRootTypes["TransactionEdge"] | null> | null; // [TransactionEdge]
+    pageInfo: NexusGenRootTypes["PageInfo"]; // PageInfo!
     totalCount?: number | null; // Int
-  }
-  TransactionEdge: { // root type
+  };
+  TransactionEdge: {
+    // root type
     cursor: string; // String!
-    node?: NexusGenRootTypes['Transaction'] | null; // Transaction
-  }
+    node?: NexusGenRootTypes["Transaction"] | null; // Transaction
+  };
   User: User;
   UserSettigs: UserSettings;
 }
 
-export interface NexusGenInterfaces {
-}
+export interface NexusGenInterfaces {}
 
-export interface NexusGenUnions {
-}
+export interface NexusGenUnions {}
 
-export type NexusGenRootTypes = NexusGenObjects
+export type NexusGenRootTypes = NexusGenObjects;
 
-export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
+export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars;
 
 export interface NexusGenFieldTypes {
-  Mutation: { // field return type
+  Mutation: {
+    // field return type
     createTransaction: boolean | null; // Boolean
-  }
-  PageInfo: { // field return type
+  };
+  PageInfo: {
+    // field return type
     endCursor: string | null; // String
     hasNextPage: boolean; // Boolean!
     hasPreviousPage: boolean; // Boolean!
     startCursor: string | null; // String
-  }
-  Query: { // field return type
-    allTransactions: NexusGenRootTypes['TransactionConnection'] | null; // TransactionConnection
-    getTransaction: NexusGenRootTypes['Transaction'] | null; // Transaction
-    getUser: NexusGenRootTypes['User'] | null; // User
-  }
-  StarWarsCharacter: { // field return type
+  };
+  Query: {
+    // field return type
+    allTransactions: NexusGenRootTypes["TransactionConnection"] | null; // TransactionConnection
+    getTransaction: NexusGenRootTypes["Transaction"] | null; // Transaction
+    getUser: NexusGenRootTypes["User"] | null; // User
+  };
+  StarWarsCharacter: {
+    // field return type
     id: string; // ID!
     name: string; // String!
-  }
-  Transaction: { // field return type
+  };
+  Transaction: {
+    // field return type
     amountInCents: number; // Int!
-    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    createdAt: NexusGenScalars["DateTime"] | null; // DateTime
     id: string; // ID!
     merchant: string | null; // String
     summary: string | null; // String
-    transactionDate: NexusGenScalars['DateTime'] | null; // DateTime
-    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
-    user: NexusGenRootTypes['User'] | null; // User
-  }
-  TransactionConnection: { // field return type
-    edges: Array<NexusGenRootTypes['TransactionEdge'] | null> | null; // [TransactionEdge]
-    pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
+    transactionDate: NexusGenScalars["DateTime"] | null; // DateTime
+    updatedAt: NexusGenScalars["DateTime"] | null; // DateTime
+    user: NexusGenRootTypes["User"] | null; // User
+  };
+  TransactionConnection: {
+    // field return type
+    edges: Array<NexusGenRootTypes["TransactionEdge"] | null> | null; // [TransactionEdge]
+    pageInfo: NexusGenRootTypes["PageInfo"]; // PageInfo!
     totalCount: number | null; // Int
-  }
-  TransactionEdge: { // field return type
+  };
+  TransactionEdge: {
+    // field return type
     cursor: string; // String!
-    node: NexusGenRootTypes['Transaction'] | null; // Transaction
-  }
-  User: { // field return type
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    node: NexusGenRootTypes["Transaction"] | null; // Transaction
+  };
+  User: {
+    // field return type
+    createdAt: NexusGenScalars["DateTime"]; // DateTime!
     email: string; // String!
     firstName: string; // String!
     id: string; // ID!
     lastName: string; // String!
     phoneNumber: string | null; // String
-    transactions: NexusGenRootTypes['TransactionConnection'] | null; // TransactionConnection
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    userSettings: NexusGenRootTypes['UserSettigs']; // UserSettigs!
-  }
-  UserSettigs: { // field return type
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    favoriteStarWarsCharacter: NexusGenRootTypes['StarWarsCharacter'] | null; // StarWarsCharacter
+    transactions: NexusGenRootTypes["TransactionConnection"] | null; // TransactionConnection
+    updatedAt: NexusGenScalars["DateTime"]; // DateTime!
+    userSettings: NexusGenRootTypes["UserSettigs"]; // UserSettigs!
+  };
+  UserSettigs: {
+    // field return type
+    createdAt: NexusGenScalars["DateTime"]; // DateTime!
+    favoriteStarWarsCharacter: NexusGenRootTypes["StarWarsCharacter"] | null; // StarWarsCharacter
     id: string; // ID!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-  }
+    updatedAt: NexusGenScalars["DateTime"]; // DateTime!
+  };
 }
 
 export interface NexusGenFieldTypeNames {
-  Mutation: { // field return type name
-    createTransaction: 'Boolean'
-  }
-  PageInfo: { // field return type name
-    endCursor: 'String'
-    hasNextPage: 'Boolean'
-    hasPreviousPage: 'Boolean'
-    startCursor: 'String'
-  }
-  Query: { // field return type name
-    allTransactions: 'TransactionConnection'
-    getTransaction: 'Transaction'
-    getUser: 'User'
-  }
-  StarWarsCharacter: { // field return type name
-    id: 'ID'
-    name: 'String'
-  }
-  Transaction: { // field return type name
-    amountInCents: 'Int'
-    createdAt: 'DateTime'
-    id: 'ID'
-    merchant: 'String'
-    summary: 'String'
-    transactionDate: 'DateTime'
-    updatedAt: 'DateTime'
-    user: 'User'
-  }
-  TransactionConnection: { // field return type name
-    edges: 'TransactionEdge'
-    pageInfo: 'PageInfo'
-    totalCount: 'Int'
-  }
-  TransactionEdge: { // field return type name
-    cursor: 'String'
-    node: 'Transaction'
-  }
-  User: { // field return type name
-    createdAt: 'DateTime'
-    email: 'String'
-    firstName: 'String'
-    id: 'ID'
-    lastName: 'String'
-    phoneNumber: 'String'
-    transactions: 'TransactionConnection'
-    updatedAt: 'DateTime'
-    userSettings: 'UserSettigs'
-  }
-  UserSettigs: { // field return type name
-    createdAt: 'DateTime'
-    favoriteStarWarsCharacter: 'StarWarsCharacter'
-    id: 'ID'
-    updatedAt: 'DateTime'
-  }
+  Mutation: {
+    // field return type name
+    createTransaction: "Boolean";
+  };
+  PageInfo: {
+    // field return type name
+    endCursor: "String";
+    hasNextPage: "Boolean";
+    hasPreviousPage: "Boolean";
+    startCursor: "String";
+  };
+  Query: {
+    // field return type name
+    allTransactions: "TransactionConnection";
+    getTransaction: "Transaction";
+    getUser: "User";
+  };
+  StarWarsCharacter: {
+    // field return type name
+    id: "ID";
+    name: "String";
+  };
+  Transaction: {
+    // field return type name
+    amountInCents: "Int";
+    createdAt: "DateTime";
+    id: "ID";
+    merchant: "String";
+    summary: "String";
+    transactionDate: "DateTime";
+    updatedAt: "DateTime";
+    user: "User";
+  };
+  TransactionConnection: {
+    // field return type name
+    edges: "TransactionEdge";
+    pageInfo: "PageInfo";
+    totalCount: "Int";
+  };
+  TransactionEdge: {
+    // field return type name
+    cursor: "String";
+    node: "Transaction";
+  };
+  User: {
+    // field return type name
+    createdAt: "DateTime";
+    email: "String";
+    firstName: "String";
+    id: "ID";
+    lastName: "String";
+    phoneNumber: "String";
+    transactions: "TransactionConnection";
+    updatedAt: "DateTime";
+    userSettings: "UserSettigs";
+  };
+  UserSettigs: {
+    // field return type name
+    createdAt: "DateTime";
+    favoriteStarWarsCharacter: "StarWarsCharacter";
+    id: "ID";
+    updatedAt: "DateTime";
+  };
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createTransaction: { // args
+    createTransaction: {
+      // args
       amountInCents: number; // Int!
       date?: string | null; // String
       merchant?: string | null; // String
       summary?: string | null; // String
       userId: string; // ID!
-    }
-  }
+    };
+  };
   Query: {
-    allTransactions: { // args
+    allTransactions: {
+      // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
       userId?: string | null; // ID
-    }
-    getTransaction: { // args
+    };
+    getTransaction: {
+      // args
       id: string; // ID!
-    }
-    getUser: { // args
+    };
+    getUser: {
+      // args
       id: string; // ID!
-    }
-  }
+    };
+  };
   User: {
-    transactions: { // args
+    transactions: {
+      // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
       last?: number | null; // Int
-    }
-  }
+    };
+  };
 }
 
-export interface NexusGenAbstractTypeMembers {
-}
+export interface NexusGenAbstractTypeMembers {}
 
-export interface NexusGenTypeInterfaces {
-}
+export interface NexusGenTypeInterfaces {}
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
@@ -272,11 +311,11 @@ export type NexusGenAbstractsUsingStrategyResolveType = never;
 
 export type NexusGenFeaturesConfig = {
   abstractTypeStrategies: {
-    isTypeOf: false
-    resolveType: true
-    __typename: false
-  }
-}
+    isTypeOf: false;
+    resolveType: true;
+    __typename: false;
+  };
+};
 
 export interface NexusGenTypes {
   context: HttpContext;
@@ -294,29 +333,37 @@ export interface NexusGenTypes {
   interfaceNames: NexusGenInterfaceNames;
   scalarNames: NexusGenScalarNames;
   unionNames: NexusGenUnionNames;
-  allInputTypes: NexusGenTypes['inputNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['scalarNames'];
-  allOutputTypes: NexusGenTypes['objectNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['unionNames'] | NexusGenTypes['interfaceNames'] | NexusGenTypes['scalarNames'];
-  allNamedTypes: NexusGenTypes['allInputTypes'] | NexusGenTypes['allOutputTypes']
-  abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames'];
+  allInputTypes:
+    | NexusGenTypes["inputNames"]
+    | NexusGenTypes["enumNames"]
+    | NexusGenTypes["scalarNames"];
+  allOutputTypes:
+    | NexusGenTypes["objectNames"]
+    | NexusGenTypes["enumNames"]
+    | NexusGenTypes["unionNames"]
+    | NexusGenTypes["interfaceNames"]
+    | NexusGenTypes["scalarNames"];
+  allNamedTypes:
+    | NexusGenTypes["allInputTypes"]
+    | NexusGenTypes["allOutputTypes"];
+  abstractTypes: NexusGenTypes["interfaceNames"] | NexusGenTypes["unionNames"];
   abstractTypeMembers: NexusGenAbstractTypeMembers;
   objectsUsingAbstractStrategyIsTypeOf: NexusGenObjectsUsingAbstractStrategyIsTypeOf;
   abstractsUsingStrategyResolveType: NexusGenAbstractsUsingStrategyResolveType;
   features: NexusGenFeaturesConfig;
 }
 
-
 declare global {
-  interface NexusGenPluginTypeConfig<TypeName extends string> {
-  }
-  interface NexusGenPluginInputTypeConfig<TypeName extends string> {
-  }
-  interface NexusGenPluginFieldConfig<TypeName extends string, FieldName extends string> {
-    
-  }
-  interface NexusGenPluginInputFieldConfig<TypeName extends string, FieldName extends string> {
-  }
-  interface NexusGenPluginSchemaConfig {
-  }
-  interface NexusGenPluginArgConfig {
-  }
+  interface NexusGenPluginTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginInputTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginFieldConfig<
+    TypeName extends string,
+    FieldName extends string,
+  > {}
+  interface NexusGenPluginInputFieldConfig<
+    TypeName extends string,
+    FieldName extends string,
+  > {}
+  interface NexusGenPluginSchemaConfig {}
+  interface NexusGenPluginArgConfig {}
 }

@@ -1,10 +1,10 @@
 import { makeSchema, connectionPlugin } from "nexus";
 import { join } from "path";
 
-import * as Query from "../server/graphql/queries";
-import * as Mutation from "../server/graphql/mutations";
-import { GraphqlDate } from "../server/graphql/types/date";
-import { GraphqlDateTime } from "../server/graphql/types/date-time";
+import * as Query from "../src/server/graphql/queries";
+import * as Mutation from "../src/server/graphql/mutations";
+import { GraphqlDate } from "../src/server/graphql/types/date";
+import { GraphqlDateTime } from "../src/server/graphql/types/date-time";
 
 const dirName = join(process.cwd(), "apollo");
 // Recursively traverses the value passed to types looking for

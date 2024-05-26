@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "protos.user": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_opt=env=node --ts_proto_opt=outputServices=grpc-js --ts_proto_opt=esModuleInterop=true --ts_proto_opt=useOptionals=true --ts_proto_opt=stringEnums=true --ts_proto_out=./ ./server/protos/user.proto",
-    "protos.user.settings": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_opt=env=node --ts_proto_opt=outputServices=grpc-js --ts_proto_opt=esModuleInterop=true --ts_proto_opt=useOptionals=true --ts_proto_opt=stringEnums=true --ts_proto_out=./ ./server/protos/user-settings.proto"
+    "protos.user": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_opt=env=node --ts_proto_opt=outputServices=grpc-js --ts_proto_opt=esModuleInterop=true --ts_proto_opt=useOptionals=true --ts_proto_opt=stringEnums=true --ts_proto_out=./ ./src/server/protos/user.proto",
+    "protos.user.settings": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_opt=env=node --ts_proto_opt=outputServices=grpc-js --ts_proto_opt=esModuleInterop=true --ts_proto_opt=useOptionals=true --ts_proto_opt=stringEnums=true --ts_proto_out=./ ./src/server/protos/user-settings.proto"
   },
   "dependencies": {
     "@apollo/client": "^3.10.0-rc.1",

@@ -6,7 +6,6 @@ export default async function HomePage() {
     <div className="grid gap-6">
       <Heading1>WEB BFF POC</Heading1>
       <Paragraph>Do stuff here</Paragraph>
-      {/* <PrimaryButton onClick={() => signOut()}>Sign out</PrimaryButton> */}
     </div>
   );
 }
