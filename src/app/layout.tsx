@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={cn(
           interFont.className,
-          "bg-white text-black font-normal text-base min-h-screen min-w-screen"
+          "bg-white text-black font-normal text-base min-w-screen"
         )}
       >
         <ClientProviders>{children}</ClientProviders>

@@ -17,7 +17,7 @@ export const Navigation = () => {
   const pathname = usePathname();
 
   return (
-    <section className="w-[var(--navigation-aside-collapsed-width)] lg:w-[var(--navigation-aside-expanded-width)] border-r border-l-primary-800 h-full">
+    <section className="w-[var(--navigation-aside-collapsed-width)] lg:w-[var(--navigation-aside-expanded-width)] border-r border-l-primary-800 h-[calc(100vh-var(--header-height))]">
       <NextLink href={PATHS.home}>
         <NavigationButton isActive={pathname === PATHS.home}>
           <Icon

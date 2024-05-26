@@ -8,12 +8,14 @@ export default function AuthenticatedRoutesLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="h-screen">
+    <main>
       <Header />
       <div className="h-[calc(100vh-var(--header-height))] mt-[var(--header-height)] grid grid-cols-[auto_1fr]">
         <Navigation />
-        <div className="py-4 px-6 h-full">{children}</div>
+        <div className="py-4 px-6 h-[calc(100vh-var(--header-height))] overflow-scroll">
+          {children}
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
