@@ -6,6 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --header-height: 80px;
+  --navigation-aside-collapsed-width: 2.5rem;
+  --navigation-aside-expanded-width: 16rem;
 }
 
 @media (prefers-color-scheme: dark) {
