@@ -9,29 +9,36 @@ export const Transactions = () => {
     limit: 10,
   });
 
-  return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableHeader>Id</TableHeader>
-          <TableHeader>Merchant</TableHeader>
-          <TableHeader>Summary</TableHeader>
-          <TableHeader>Amount</TableHeader>
-        </TableRow>
-      </TableHead>
-      <tbody>
-        {/* @ts-ignore */}
-        {transactions.map((t) => {
-          return (
-            <TableRow key={t.id}>
-              <TableCell>{t.id}</TableCell>
-              <TableCell>{t.merchant}</TableCell>
-              <TableCell>{t.summary}</TableCell>
-              <TableCell>{t.amountInCents}</TableCell>
+  return loading ? (
+    <div>loading</div>
+  ) : (
+    <div className="flex flex-col gap-1">
+      <div>{totalCount} - total rows</div>
+      <div>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeader>Id</TableHeader>
+              <TableHeader>Merchant</TableHeader>
+              <TableHeader>Summary</TableHeader>
+              <TableHeader>Amount</TableHeader>
             </TableRow>
-          );
-        })}
-      </tbody>
-    </Table>
+          </TableHead>
+          <tbody>
+            {/* @ts-ignore */}
+            {transactions.map((t) => {
+              return (
+                <TableRow key={t.id}>
+                  <TableCell>{t.id}</TableCell>
+                  <TableCell>{t.merchant}</TableCell>
+                  <TableCell>{t.summary}</TableCell>
+                  <TableCell>{t.amountInCents}</TableCell>
+                </TableRow>
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
+    </div>
   );
 };
