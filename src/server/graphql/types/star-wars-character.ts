@@ -5,7 +5,13 @@ export const StarWarsCharacter = objectType({
   name: "StarWarsCharacter",
 
   sourceType: {
-    module: fsPathJoin("server", "services", "star-wars-character", "types.ts"),
+    module: fsPathJoin(
+      "src",
+      "server",
+      "services",
+      "star-wars-character",
+      "types.ts"
+    ),
     export: "StarWarsCharacter",
   },
 

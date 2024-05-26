@@ -11,8 +11,8 @@ export const {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       profile(profile) {
-        console.log("🚀 ~ profile:", profile);
         const userName = `${profile.given_name} ${profile.family_name}`;
+
         return {
           id: profile.sub,
           name: userName,
@@ -23,12 +23,21 @@ export const {
     }),
   ],
   callbacks: {
-    session({ session, ...rest }) {
-      const token = rest.token;
+    session({ session }) {
+      const HARD_CODED_USER_IDS = [
+        "clwb7mw8300003z6kadi875xg",
+        "clwb7nckm00033z6kbm4nd22r",
+        "clwb7nfxq00063z6k0acectsj",
+      ];
+      const randomId =
+        HARD_CODED_USER_IDS[
+          Math.floor(Math.random() * HARD_CODED_USER_IDS.length)
+        ] ?? HARD_CODED_USER_IDS[0];
+
       return {
         ...session,
         user: {
-          id: session?.user?.id ?? token?.sub ?? "",
+          id: randomId,
           email: session?.user?.email,
           image: session?.user?.image,
           name: session?.user?.name,

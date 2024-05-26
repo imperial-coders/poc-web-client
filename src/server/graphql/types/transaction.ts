@@ -6,7 +6,7 @@ export const Transaction = objectType({
   name: "Transaction",
 
   sourceType: {
-    module: fsPathJoin("server", "services", "transaction", "types.ts"),
+    module: fsPathJoin("src", "server", "services", "transaction", "types.ts"),
     export: "Transaction",
   },
 

@@ -7,7 +7,7 @@ export const User = objectType({
   name: "User",
 
   sourceType: {
-    module: fsPathJoin("server", "protos", "user.ts"),
+    module: fsPathJoin("src", "server", "protos", "user.ts"),
     export: "User",
   },
 

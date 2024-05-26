@@ -6,7 +6,7 @@ export const UserSettings = objectType({
   name: "UserSettigs",
 
   sourceType: {
-    module: fsPathJoin("server", "protos", "user-settings.ts"),
+    module: fsPathJoin("src", "server", "protos", "user-settings.ts"),
     export: "UserSettings",
   },
 
