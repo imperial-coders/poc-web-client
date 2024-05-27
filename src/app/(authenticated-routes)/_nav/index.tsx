@@ -46,7 +46,7 @@ export const Navigation = () => {
                   COLORS.primary[600]
             }
           />
-          <NavigationButtonText>Dashboard</NavigationButtonText>
+          <NavigationButtonText>Transactions</NavigationButtonText>
         </NavigationButton>
       </NextLink>
     </section>

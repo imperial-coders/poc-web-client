@@ -1,7 +1,13 @@
 import { auth } from "@/auth";
 import { Transactions } from "../../../../components/transactions";
+import { Heading1 } from "@/components/@common/typography/heading";
 
 export default async function TransactionsPage() {
   const session = await auth();
-  return <Transactions userId={session?.user?.id} />;
+  return (
+    <div className="grid gap-6">
+      <Heading1>All your transactions</Heading1>
+      <Transactions userId={session?.user?.id} />
+    </div>
+  );
 }
