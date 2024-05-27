@@ -10,6 +10,8 @@ import {
   TableRow,
 } from "../../../../components/table";
 import { useGetTransactions } from "./data";
+import { formatCurrency } from "@/utils/format-currency";
+import { formatCentsToDollars } from "@/utils/number";
 
 export const TransactionsTable = ({ userId }: { userId?: string }) => {
   const [after, setAfter] = useState<string | undefined>(undefined);
@@ -59,7 +61,11 @@ export const TransactionsTable = ({ userId }: { userId?: string }) => {
                   <TableCell>{transaction.id}</TableCell>
                   <TableCell>{transaction.merchant}</TableCell>
                   <TableCell>{transaction.summary}</TableCell>
-                  <TableCell>{transaction.amountInCents}</TableCell>
+                  <TableCell>
+                    {formatCurrency({
+                      amount: formatCentsToDollars(transaction.amountInCents),
+                    })}
+                  </TableCell>
                 </TransactionsTableRow>
               );
             }
