@@ -37,11 +37,7 @@ export const useGetTransactions = ({
   after?: string;
   before?: string;
 }) => {
-  console.log("🚀 ~ before:", before);
-  console.log("🚀 ~ after:", after);
   const [first, last] = before ? [undefined, limit] : [limit, undefined];
-  console.log("🚀 ~ last:", last);
-  console.log("🚀 ~ first:", first);
 
   const { data, loading, error } = useQuery(GET_TRANSACTIONS, {
     skip: !userId,
