@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { ChevronLeft } from "../icons/chevron-left";
-import { ChevronRight } from "../icons/chevron-right";
+import { Icon } from "@mdi/react";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
 export const Table = ({ children }: { children: ReactNode }) => {
   return <table className="w-full text-sm text-left">{children}</table>;
@@ -31,11 +31,23 @@ export const Pagination = ({
 }) => {
   return (
     <div className="flex gap-1">
-      <button onClick={onBack}>
-        <ChevronRight />
+      <button
+        onClick={onBack}
+        style={{
+          width: "2em",
+          height: "2em",
+        }}
+      >
+        <Icon path={mdiChevronLeft} />
       </button>
-      <button onClick={onNext}>
-        <ChevronLeft />
+      <button
+        onClick={onNext}
+        style={{
+          width: "2em",
+          height: "2em",
+        }}
+      >
+        <Icon path={mdiChevronRight} />
       </button>
     </div>
   );

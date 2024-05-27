@@ -7,6 +7,9 @@ const GET_TRANSACTIONS = gql(`
 query GetTransactions($userId: ID!, $first: Int, $after: String) {
     allTransactions(first: $first, after: $after, userId: $userId) {
       totalCount
+      pageInfo {
+        endCursor
+      }
       edges {
         node {
           id
@@ -41,6 +44,7 @@ export const useGetTransactions = ({
   return {
     // @ts-ignore
     transactions: data?.allTransactions?.edges.map(({ node }) => node) ?? [],
+    endCursor: data?.allTransactions?.pageInfo?.endCursor,
     totalCount: data?.allTransactions?.totalCount,
     loading,
     error,
