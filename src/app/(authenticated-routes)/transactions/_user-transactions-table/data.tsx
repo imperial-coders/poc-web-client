@@ -1,10 +1,10 @@
 "use client";
 
-// TODO - FIX - This is the wrong GQL import - Other one isn't working
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@/types/gql";
+import { useQuery } from "@apollo/client";
 
 const GET_TRANSACTIONS = gql(`
-query GetTransactions($userId: ID!, $first: Int, $after: String) {
+  query GetTransactions($userId: ID!, $first: Int, $after: String) {
     allTransactions(first: $first, after: $after, userId: $userId) {
       totalCount
       pageInfo {
@@ -30,20 +30,20 @@ export const useGetTransactions = ({
 }: {
   userId?: string;
   limit: number;
-  offset?: number;
+  offset?: string;
 }) => {
   const { data, loading, error } = useQuery(GET_TRANSACTIONS, {
     skip: !userId,
     variables: {
-      userId,
+      userId: userId ?? "",
       first: limit,
       ...(offset && { after: offset }),
     },
   });
 
   return {
-    // @ts-ignore
-    transactions: data?.allTransactions?.edges.map(({ node }) => node) ?? [],
+    transactions:
+      data?.allTransactions?.edges?.map((edge) => edge?.node ?? null) ?? [],
     endCursor: data?.allTransactions?.pageInfo?.endCursor,
     totalCount: data?.allTransactions?.totalCount,
     loading,

@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query getUserDataForHomePage($userId: ID!) {\n    getUser(id: $userId) {\n      id\n      firstName\n      lastName\n      email\n      userSettings {\n        id\n        createdAt\n        updatedAt\n        favoriteStarWarsCharacter {\n          id\n          name\n        }\n      }\n    }\n  }\n": types.GetUserDataForHomePageDocument,
+    "\n  query GetTransactions($userId: ID!, $first: Int, $after: String) {\n    allTransactions(first: $first, after: $after, userId: $userId) {\n      totalCount\n      pageInfo {\n        endCursor\n      }\n      edges {\n        node {\n          id\n          amountInCents\n          merchant\n          summary\n          transactionDate\n        }\n      }\n    }\n  }\n": types.GetTransactionsDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query getUserDataForHomePage($userId: ID!) {\n    getUser(id: $userId) {\n      id\n      firstName\n      lastName\n      email\n      userSettings {\n        id\n        createdAt\n        updatedAt\n        favoriteStarWarsCharacter {\n          id\n          name\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getUserDataForHomePage($userId: ID!) {\n    getUser(id: $userId) {\n      id\n      firstName\n      lastName\n      email\n      userSettings {\n        id\n        createdAt\n        updatedAt\n        favoriteStarWarsCharacter {\n          id\n          name\n        }\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetTransactions($userId: ID!, $first: Int, $after: String) {\n    allTransactions(first: $first, after: $after, userId: $userId) {\n      totalCount\n      pageInfo {\n        endCursor\n      }\n      edges {\n        node {\n          id\n          amountInCents\n          merchant\n          summary\n          transactionDate\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetTransactions($userId: ID!, $first: Int, $after: String) {\n    allTransactions(first: $first, after: $after, userId: $userId) {\n      totalCount\n      pageInfo {\n        endCursor\n      }\n      edges {\n        node {\n          id\n          amountInCents\n          merchant\n          summary\n          transactionDate\n        }\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
