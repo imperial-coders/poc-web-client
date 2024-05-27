@@ -78,14 +78,14 @@ export function parseArgs(args: ConnectionArg) {
   const limit = Number.isFinite(args.first)
     ? (args.first as number)
     : Number.isFinite(args.last)
-    ? (args.last as number)
-    : 20;
+      ? (args.last as number)
+      : 20;
 
   const offset = args.before
     ? Math.max(0, parseCursor(args.before) - limit)
     : args.after
-    ? parseCursor(args.after) + 1
-    : 0;
+      ? parseCursor(args.after) + 1
+      : 0;
 
   return { limit, offset };
 }

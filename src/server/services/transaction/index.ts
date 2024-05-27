@@ -96,39 +96,4 @@ export class TransactionService {
       offset,
     });
   }
-
-  //   async updateGame({
-  //     id,
-  //     localDateTime,
-  //     utcDateTime,
-  //     location,
-  //   }: {
-  //     id: string;
-  //     localDateTime: string;
-  //     utcDateTime: Date;
-  //     location?: string;
-  //   }) {
-  //     return await prisma.game.update({
-  //       where: {
-  //         id,
-  //       },
-  //       data: {
-  //         ...(localDateTime
-  //           ? {
-  //               localDateTime,
-  //             }
-  //           : null),
-  //         ...(utcDateTime
-  //           ? {
-  //               utcDateTime,
-  //             }
-  //           : null),
-  //         ...(location
-  //           ? {
-  //               address: location,
-  //             }
-  //           : null),
-  //       },
-  //     });
-  //   }
 }

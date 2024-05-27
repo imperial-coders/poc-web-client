@@ -11,7 +11,7 @@ export const allTransactions = queryField((t) => {
     totalCount: async (
       _root,
       // @ts-ignore => not sure why this doesn't recognize the additional args
-      { userId, keywords, visibility, ...args },
+      { userId, ...args },
       ctx
     ) => {
       const results = await ctx
