@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
   Pagination,
   Table,
@@ -12,9 +12,13 @@ import {
 import { useGetTransactions } from "./data";
 
 export const TransactionsTable = ({ userId }: { userId?: string }) => {
-  const { totalCount, transactions, loading } = useGetTransactions({
+  const [after, setAfter] = useState<string | undefined>(undefined);
+  const [before, setBefore] = useState<string | undefined>(undefined);
+  const { totalCount, transactions, loading, pageInfo } = useGetTransactions({
     userId,
     limit: 10,
+    after: after,
+    before: before,
   });
 
   return loading ? (
@@ -24,14 +28,23 @@ export const TransactionsTable = ({ userId }: { userId?: string }) => {
       <div className="flex items-center">
         <div>{totalCount} - total rows</div>
         <Pagination
-          onBack={() => console.log("back")}
-          onNext={() => console.log("next")}
+          onBack={() => {
+            if (pageInfo && pageInfo.hasPreviousPage && pageInfo.startCursor) {
+              setAfter(undefined);
+              setBefore(pageInfo.startCursor);
+            }
+          }}
+          onNext={() => {
+            if (pageInfo && pageInfo.hasNextPage && pageInfo.endCursor) {
+              setAfter(pageInfo.endCursor);
+              setBefore(undefined);
+            }
+          }}
         />
       </div>
       <Table>
         <TableHead>
           <TransactionsTableRow>
-            <TableHeader />
             <TableHeader>Id</TableHeader>
             <TableHeader>Merchant</TableHeader>
             <TableHeader>Summary</TableHeader>
@@ -39,11 +52,10 @@ export const TransactionsTable = ({ userId }: { userId?: string }) => {
           </TransactionsTableRow>
         </TableHead>
         <tbody>
-          {transactions.map((transaction, index) => {
+          {transactions.map((transaction) => {
             if (transaction) {
               return (
                 <TransactionsTableRow key={transaction.id}>
-                  <TableCell>{index + 1}</TableCell>
                   <TableCell>{transaction.id}</TableCell>
                   <TableCell>{transaction.merchant}</TableCell>
                   <TableCell>{transaction.summary}</TableCell>
@@ -62,7 +74,7 @@ export const TransactionsTable = ({ userId }: { userId?: string }) => {
 
 const TransactionsTableRow = ({ children }: { children: ReactNode }) => {
   return (
-    <TableRow className="grid grid-cols-[2rem_1fr_1fr_10em_10em] gap-2">
+    <TableRow className="grid grid-cols-[1fr_1fr_10em_10em] gap-2">
       {children}
     </TableRow>
   );

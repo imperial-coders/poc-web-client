@@ -21,6 +21,31 @@ export const allTransactions = queryField((t) => {
       return results.pageInfo.total;
     },
 
+    // async pageInfoFromNodes(nodes, args, ctx, info) {
+    //   console.log("🚀 ~ nodes:", nodes);
+    //   const nextPageResults = await ctx
+    //     .transactionService()
+    //     .searchTransactionsConnections({
+    //       ...args,
+    //       userId: args.userId ?? undefined,
+    //       after: nodes[nodes.length - 1]?.id,
+    //     });
+    //   console.log("🚀 ~ results:", nextPageResults);
+    //   const previousPageResults = await ctx
+    //     .transactionService()
+    //     .searchTransactionsConnections({
+    //       ...args,
+    //       userId: args.userId ?? undefined,
+    //       before: nodes[0]?.id,
+    //     });
+    //   console.log("🚀 ~ previousPageResults:", previousPageResults);
+
+    //   return {
+    //     hasNextPage: nextPageResults.edges.length > 0,
+    //     hasPreviousPage: previousPageResults.edges.length > 0,
+    //   };
+    // },
+
     async nodes(_root, { userId, ...args }, ctx) {
       const results = await ctx
         .transactionService()
